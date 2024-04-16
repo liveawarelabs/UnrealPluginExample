@@ -11,3 +11,7 @@ namespace {
 void UMyBlueprintFunctionLibrary::MakeConnection() {
 	plugin = LiveAwareLabs::RecorderPlugin::Create();
 }
+
+void UMyBlueprintFunctionLibrary::ChangeMode() {
+	plugin->ChangeBuffering(!plugin->IsBuffering);
+}

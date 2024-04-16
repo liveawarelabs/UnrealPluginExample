@@ -14,4 +14,6 @@ class UNREALPLUGINEXAMPLE_API UMyBlueprintFunctionLibrary : public UBlueprintFun
 	GENERATED_BODY()
 	UFUNCTION(BlueprintCallable, Category = "Live Aware")
 	static void MakeConnection();
+	UFUNCTION(BlueprintCallable, Category = "Live Aware")
+	static void ChangeMode();
 };
