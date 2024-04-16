@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+using System.IO;
 using UnrealBuildTool;
 
 public class UnrealPluginExample : ModuleRules {
@@ -9,6 +10,9 @@ public class UnrealPluginExample : ModuleRules {
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
+
+		PublicAdditionalLibraries.Add(Path.Combine(ModuleDirectory, "..", "ThirdParty", "LiveAwareLabs", "recorder-unreal-plugin.lib"));
+		PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "..", "ThirdParty", "LiveAwareLabs"));
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
