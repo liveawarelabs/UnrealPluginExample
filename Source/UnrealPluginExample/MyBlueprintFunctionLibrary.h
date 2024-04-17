@@ -19,6 +19,8 @@ class UNREALPLUGINEXAMPLE_API UMyBlueprintFunctionLibrary : public UBlueprintFun
 	UFUNCTION(BlueprintCallable, Category = "Live Aware")
 	static void ChangeMode();
 	UFUNCTION(BlueprintCallable, Category = "Live Aware")
+	static void GetState(bool& running, FString& status, FString& changeModeText, FString& startText, FString& stopText);
+	UFUNCTION(BlueprintCallable, Category = "Live Aware")
 	static void CreateSlice();
 	UFUNCTION(BlueprintCallable, Category = "Live Aware")
 	static void SetTeamName(FString const& teamName);

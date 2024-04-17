@@ -27,6 +27,14 @@ void UMyBlueprintFunctionLibrary::ChangeMode() {
 	plugin->ChangeBuffering(!plugin->IsBuffering);
 }
 
+void UMyBlueprintFunctionLibrary::GetState(bool& running, FString& status, FString& changeModeText, FString& startText, FString& stopText) {
+	running = true;
+	status = "status";
+	changeModeText = "changeModeText";
+	startText = "startText";
+	stopText = "stopText";
+}
+
 void UMyBlueprintFunctionLibrary::CreateSlice() {
 	plugin->CreateSlice();
 }
