@@ -26,11 +26,13 @@ void UMyBlueprintFunctionLibrary::ChangeMode() {
 }
 
 void UMyBlueprintFunctionLibrary::GetState(bool& running, FString& status, FString& changeModeText, FString& startText, FString& stopText) {
-	running = true;
-	status = "status";
-	changeModeText = "changeModeText";
-	startText = "startText";
-	stopText = "stopText";
+	running = plugin->IsRunning;
+	FString state = plugin->IsRecording ? "Recording" : "Idle";
+	FString mode = plugin->IsBuffering ? ", buffering" : "";
+	status = state + mode;
+	changeModeText = plugin->IsBuffering ? "Stop buffering" : "Start buffering";
+	startText = wantsLive ? "GO LIVE" : "Start Recording";
+	stopText = wantsLive ? "End Stream" : "Stop Recording";
 }
 
 void UMyBlueprintFunctionLibrary::CreateSlice() {
