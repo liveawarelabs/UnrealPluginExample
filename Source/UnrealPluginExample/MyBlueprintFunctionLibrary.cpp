@@ -7,6 +7,8 @@ namespace {
 	std::unique_ptr<LiveAwareLabs::RecorderPlugin> plugin;
 	std::string teamName;
 	std::string eventName;
+	bool wantsUpload;
+	std::string recordingName;
 	bool wantsCamera;
 	bool wantsMicrophone;
 	bool wantsLive;
@@ -47,6 +49,14 @@ void UMyBlueprintFunctionLibrary::SetEventName(FString const& newEventName) {
 	eventName = TCHAR_TO_UTF8(*newEventName);
 }
 
+void UMyBlueprintFunctionLibrary::SetRecordingName(FString const& newRecordingName) {
+	recordingName = TCHAR_TO_UTF8(*newRecordingName);
+}
+
+void UMyBlueprintFunctionLibrary::SetUpload(bool newWantsUpload) {
+	wantsUpload = newWantsUpload;
+}
+
 void UMyBlueprintFunctionLibrary::SetCamera(bool newWantsCamera) {
 	wantsCamera = newWantsCamera;
 }
@@ -76,5 +86,5 @@ void UMyBlueprintFunctionLibrary::StartRecording() {
 }
 
 void UMyBlueprintFunctionLibrary::StopRecording() {
-	plugin->StopStreaming();
+	plugin->StopStreaming(wantsUpload, recordingName.c_str());
 }

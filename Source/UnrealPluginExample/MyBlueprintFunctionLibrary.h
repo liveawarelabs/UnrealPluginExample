@@ -25,6 +25,10 @@ class UNREALPLUGINEXAMPLE_API UMyBlueprintFunctionLibrary : public UBlueprintFun
 	UFUNCTION(BlueprintCallable, Category = "Live Aware")
 	static void SetEventName(FString const& eventName);
 	UFUNCTION(BlueprintCallable, Category = "Live Aware")
+	static void SetRecordingName(FString const& recordingName);
+	UFUNCTION(BlueprintCallable, Category = "Live Aware")
+	static void SetUpload(bool wantsUpload);
+	UFUNCTION(BlueprintCallable, Category = "Live Aware")
 	static void SetCamera(bool wantsCamera);
 	UFUNCTION(BlueprintCallable, Category = "Live Aware")
 	static void SetMicrophone(bool wantsMicrophone);
