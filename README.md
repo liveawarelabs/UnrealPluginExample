@@ -13,7 +13,7 @@
    the `Documents` folder.
 1. Create the `ThirdParty` folder in the `Source` folder in the repository folder.
 1. Create the `LiveAwareLabs` folder in the `ThirdParty` folder you created.
-1. Copy the contents of the Zip file found [here](https://liveawarenexus.sfo3.cdn.digitaloceanspaces.com/LiveAwareSDK/Unreal/LiveAwareLabs.zip)
+1. Copy the contents of the Zip file given to you
    into the `LiveAwareLabs` folder you created.  Ensure the relative path of the `RecorderPlugin.h` file is
    `Source\ThirdParty\LiveAwareLabs\RecorderPlugin.h`, similarly for the rest of the files.
 1. Right-click the `UnrealPluginExample.uproject` file and select `Generate Visual Studio project files`.  On Windows 11, you will
