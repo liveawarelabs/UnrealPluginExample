@@ -13,10 +13,26 @@ namespace {
 	bool wantsMicrophone;
 	bool wantsLive;
 	bool wantsFullScreen;
+	bool _isTeamChanged;
+	bool _isEventChanged;
+
+	void TeamChanged(const char* name)
+	{
+		teamName = name;
+		_isTeamChanged = true;
+	}
+
+	void EventChanged(const char* name)
+	{
+		eventName = name;
+		_isEventChanged = true;
+	}
 }
 
 void UMyBlueprintFunctionLibrary::MakeConnection() {
 	plugin = LiveAwareLabs::RecorderPlugin::Create();
+	plugin->put_TeamChanged(TeamChanged);
+	plugin->put_EventChanged(EventChanged);
 }
 
 void UMyBlueprintFunctionLibrary::CloseConnection() {
@@ -27,7 +43,8 @@ void UMyBlueprintFunctionLibrary::ChangeMode() {
 	plugin->ChangeBuffering(!plugin->IsBuffering);
 }
 
-void UMyBlueprintFunctionLibrary::GetState(bool& running, FString& status, FString& changeModeText, FString& startText, FString& stopText) {
+void UMyBlueprintFunctionLibrary::GetState(bool& running, FString& status, FString& changeModeText, FString& startText, FString& stopText, 
+											bool& isTeamChanged, FString& newTeamName, bool& isEventChanged, FString& newEventName) {
 	running = plugin->IsRunning;
 	FString state = plugin->IsRecording ? "Recording" : "Idle";
 	FString mode = plugin->IsBuffering ? ", buffering" : "";
@@ -35,6 +52,12 @@ void UMyBlueprintFunctionLibrary::GetState(bool& running, FString& status, FStri
 	changeModeText = plugin->IsBuffering ? "Stop buffering" : "Start buffering";
 	startText = wantsLive ? "GO LIVE" : "Start Recording";
 	stopText = wantsLive ? "End Stream" : "Stop Recording";
+
+	isTeamChanged = _isTeamChanged;
+	isEventChanged = _isEventChanged;
+	newTeamName = teamName.c_str();
+	newEventName = eventName.c_str();
+	_isTeamChanged = _isEventChanged = false;
 }
 
 void UMyBlueprintFunctionLibrary::CreateSlice() {
